@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "D2Coding";
+  src: url("https://cdn.jsdelivr.net/gh/naver/d2-coding-font@master/fonts/ttf/D2Coding-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
 :root {
   --paper: #f5f2ed;
   --ink: #1b1b1b;
@@ -9,9 +17,9 @@
   --terminal-text: #f2f2ef;
   --terminal-arg: #6ea8ff;
   --terminal-comment: #6fca88;
-  --font-display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  --font-body: Georgia, "Times New Roman", serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-display: "D2Coding", "Nanum Gothic Coding", "Noto Sans Mono CJK KR", monospace;
+  --font-body: "D2Coding", "Nanum Gothic Coding", "Noto Sans Mono CJK KR", monospace;
+  --font-mono: "D2Coding", "SFMono-Regular", Consolas, monospace;
   --page-space: clamp(1.25rem, 4vw, 4rem);
   --content-width: 72rem;
   --reading-width: 46rem;
@@ -29,6 +37,9 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
+  font-family: var(--font-body);
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -66,7 +77,7 @@ a {
 .cover__mark h1 {
   max-width: 8ch;
   margin: 0.8rem 0 0;
-  font-size: clamp(4.5rem, 11vw, 10rem);
+  font-size: clamp(3.8rem, 8vw, 7.2rem);
   font-weight: 600;
   letter-spacing: -0.075em;
   line-height: 0.78;
@@ -142,7 +153,7 @@ a {
 
 .current-note h2 {
   margin: 0;
-  font: 500 clamp(2.8rem, 6vw, 6rem)/0.95 var(--font-display);
+  font: 500 clamp(2.3rem, 4vw, 4.2rem)/1.02 var(--font-display);
   letter-spacing: -0.055em;
 }
 
@@ -176,7 +187,7 @@ a {
 
 .note-header h1 {
   margin: 0;
-  font: 600 clamp(4rem, 9vw, 9rem)/0.82 var(--font-display);
+  font: 600 clamp(3rem, 6vw, 6rem)/0.92 var(--font-display);
   letter-spacing: -0.075em;
 }
 
@@ -194,8 +205,16 @@ a {
 .note-section > h2,
 .download-panel h2 {
   margin: 0 0 clamp(2rem, 5vw, 5rem);
-  font: 500 clamp(2.8rem, 6vw, 6rem)/0.95 var(--font-display);
-  letter-spacing: -0.055em;
+  font: 500 clamp(1.8rem, 3.4vw, 3.2rem)/1.08 var(--font-display);
+  letter-spacing: -0.035em;
+}
+
+.note-section--diagram {
+  margin-top: 0;
+}
+
+.home-note {
+  border-top: 1px solid var(--line);
 }
 
 .prose {
@@ -254,7 +273,7 @@ a {
 
 .repo-box text {
   fill: currentColor;
-  font: 500 30px var(--font-display);
+  font: 500 27px var(--font-display);
   letter-spacing: -0.02em;
 }
 
@@ -313,6 +332,83 @@ a {
 .terminal__comment,
 .terminal__output {
   white-space: nowrap;
+}
+
+.terminal__row {
+  display: grid;
+  grid-template-columns: 1.7rem minmax(max-content, 1fr);
+  align-items: center;
+  min-width: max-content;
+}
+
+.copy-button {
+  position: relative;
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #777e84;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 140ms ease, color 140ms ease;
+}
+
+.terminal__row:hover .copy-button,
+.copy-button:focus-visible,
+.copy-button[data-copied="true"] {
+  opacity: 1;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible,
+.copy-button[data-copied="true"] {
+  color: #a1a7ac;
+}
+
+.copy-button svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.copy-button .check-shape {
+  display: none;
+}
+
+.copy-button[data-copied="true"] .copy-shape {
+  display: none;
+}
+
+.copy-button[data-copied="true"] .check-shape {
+  display: block;
+}
+
+.copy-tooltip {
+  position: absolute;
+  bottom: calc(100% + 0.45rem);
+  left: 50%;
+  z-index: 5;
+  padding: 0.3rem 0.45rem;
+  transform: translateX(-50%);
+  background: #25282b;
+  color: #a1a7ac;
+  border: 1px solid #35393c;
+  border-radius: 0.2rem;
+  opacity: 0;
+  pointer-events: none;
+  font: 0.62rem/1 var(--font-mono);
+  transition: opacity 140ms ease;
+}
+
+.copy-button:hover .copy-tooltip,
+.copy-button:focus-visible .copy-tooltip {
+  opacity: 1;
 }
 
 .terminal__prompt {
@@ -453,7 +549,7 @@ a {
   }
 
   .note-header h1 {
-    font-size: clamp(3.5rem, 18vw, 6rem);
+    font-size: clamp(2.8rem, 13vw, 4.8rem);
   }
 
   .repo-diagram {

@@ -29,28 +29,105 @@
     </nav>
   </header>
 
-  <main class="current-note">
+  <main id="local-remote" class="current-note">
     <div class="current-note__inner">
       <p class="kicker">Note<br>01—01</p>
       <article>
-        <h2><a href="./notes/local-remote/">Local repo &amp;<br>Remote repo</a></h2>
+        <h2><a href="#diagram">Local repo &amp;<br>Remote repo</a></h2>
       </article>
       <aside class="revision">
-        REVISION 01<br>
-        LAST EDITED 14:34
+        REVISION 02<br>
+        LAST EDITED 15:17
       </aside>
     </div>
   </main>
+
+  <div class="note-body home-note">
+    <section id="diagram" class="note-section note-section--diagram">
+      <figure class="repo-diagram">
+        <svg viewBox="0 0 1000 390" role="img" aria-labelledby="home-diagram-title home-diagram-desc">
+          <title id="home-diagram-title">Local repository와 Remote repository의 연결</title>
+          <desc id="home-diagram-desc">내 컴퓨터의 Local repository가 GitHub의 Remote repository와 연결되고 커밋이 이동하는 그림</desc>
+          <defs>
+            <marker id="home-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+          <g class="repo-box repo-box--local">
+            <text x="235" y="52" text-anchor="middle">내 컴퓨터</text>
+            <rect x="70" y="85" width="330" height="190" rx="4"/>
+            <line x1="135" y1="180" x2="335" y2="180"/>
+            <circle cx="135" cy="180" r="13"/><circle cx="200" cy="180" r="13"/><circle cx="265" cy="180" r="13"/><circle cx="335" cy="180" r="13"/>
+            <text x="235" y="325" text-anchor="middle">Local repository</text>
+          </g>
+          <g class="transfer">
+            <line x1="435" y1="180" x2="565" y2="180" marker-end="url(#home-arrow)"/>
+            <circle class="transfer-dot" cx="450" cy="180" r="8"/>
+          </g>
+          <g class="repo-box repo-box--remote">
+            <text x="765" y="52" text-anchor="middle">GitHub</text>
+            <rect x="600" y="85" width="330" height="190" rx="4"/>
+            <line x1="665" y1="180" x2="865" y2="180"/>
+            <circle cx="665" cy="180" r="13"/><circle cx="730" cy="180" r="13"/><circle cx="795" cy="180" r="13"/><circle cx="865" cy="180" r="13"/>
+            <text x="765" y="325" text-anchor="middle">Remote repository</text>
+          </g>
+        </svg>
+      </figure>
+    </section>
+
+    <section id="relation" class="note-section prose">
+      <h2>Local과 Remote의 관계</h2>
+      <ul>
+        <li>여러 Local repository를 하나의 Remote repository에 연결할 수 있다.</li>
+        <li>Local repository에 새로운 commit이 생겨도 Remote에 바로 반영되지는 않는다.</li>
+        <li>Local과 Remote의 파일 및 branch 정보가 항상 동기화되어 있는 것은 아니다.</li>
+      </ul>
+    </section>
+
+    <section id="commands" class="note-section">
+      <h2>Command</h2>
+      <div class="terminal" aria-label="Remote repository 등록 명령어">
+        <div class="terminal__bar"><span></span><span></span><span></span><strong>terminal</strong></div>
+        <div class="terminal__body">
+          <div class="terminal__comment"># Local repository에 Remote repository 등록</div>
+          <div class="terminal__row">
+            <button class="copy-button" type="button" data-copy="git remote add {name} {remote-url}" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
+            <div class="terminal__line"><span class="terminal__prompt">$</span> git remote add <span class="terminal__arg">{name}</span> <span class="terminal__arg">{remote-url}</span></div>
+          </div>
+          <div class="terminal__comment"># 기본 Remote 이름은 보통 origin을 사용</div>
+          <div class="terminal__row">
+            <button class="copy-button" type="button" data-copy="git remote add origin https://github.com/user/repository.git" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
+            <div class="terminal__line"><span class="terminal__prompt">$</span> git remote add <span class="terminal__arg">origin</span> <span class="terminal__arg">https://github.com/user/repository.git</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="terminal" aria-label="등록된 Remote repository 확인 명령어">
+        <div class="terminal__bar"><span></span><span></span><span></span><strong>terminal</strong></div>
+        <div class="terminal__body">
+          <div class="terminal__comment"># 등록된 Remote repository 확인</div>
+          <div class="terminal__row">
+            <button class="copy-button" type="button" data-copy="git remote -v" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
+            <div class="terminal__line"><span class="terminal__prompt">$</span> git remote -v</div>
+          </div>
+          <div class="terminal__output">origin&nbsp;&nbsp;https://github.com/user/repository.git (fetch)</div>
+          <div class="terminal__output">origin&nbsp;&nbsp;https://github.com/user/repository.git (push)</div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <details class="index-lens">
     <summary>INDEX · 01 / 01</summary>
     <nav class="index-lens__panel" aria-label="빠른 목차">
       <span class="eyebrow">Contents</span>
       <ol>
-        <li><a href="./notes/local-remote/"><span>01</span><strong>Local repo &amp; Remote repo</strong></a></li>
+        <li><a href="#diagram"><span>01</span><strong>Local / Remote</strong></a></li>
+        <li><a href="#relation"><span>02</span><span>관계</span></a></li>
+        <li><a href="#commands"><span>03</span><span>Command</span></a></li>
         <li><a href="./download/"><span>↓</span><span>Markdown Source</span></a></li>
       </ol>
     </nav>
   </details>
+  <script src="./script.js"></script>
 </body>
 </html>
