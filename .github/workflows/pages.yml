@@ -1,0 +1,54 @@
+name: Deploy Git study page
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build static site
+        shell: bash
+        run: |
+          mkdir -p _site/content
+          cp index.html styles.css script.js _site/
+          cp content/git-study-notes.md _site/content/
+
+          COMMIT="$(git log -1 --format=%h -- content/git-study-notes.md)"
+          LAST_MODIFIED="$(git log -1 --format=%cI -- content/git-study-notes.md)"
+          REVISION="$(git rev-list --count HEAD -- content/git-study-notes.md)"
+
+          printf '{"commit":"%s","lastModified":"%s","revision":%s}\n' \
+            "$COMMIT" "$LAST_MODIFIED" "$REVISION" > _site/metadata.json
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
