@@ -245,6 +245,7 @@ a {
 
 .prose {
   display: block;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .prose ul {
@@ -357,25 +358,8 @@ a {
   85%, 100% { transform: translateX(-100px); opacity: 0; }
 }
 
-.command-section h2 {
-  margin: 3.5rem 0 1rem;
-  font: 500 clamp(1rem, 1.6vw, 1.25rem)/1.4 var(--font-display);
-}
-
-.command-section h2:first-child {
-  margin-top: 0;
-}
-
-.command-note,
-.terminal-caption {
-  max-width: 52rem;
-  margin: -0.5rem 0 2.5rem;
-  color: var(--muted);
-  font: 0.82rem/1.75 var(--font-body);
-}
-
 .terminal {
-  margin: 0 0 2rem;
+  margin: 0;
   overflow: hidden;
   border: 1px solid var(--ink);
   border-radius: 0.35rem;
@@ -420,14 +404,15 @@ a {
 }
 
 .terminal__row {
-  display: grid;
-  grid-template-columns: 1.7rem minmax(max-content, 1fr);
-  align-items: center;
+  position: relative;
   min-width: max-content;
 }
 
 .copy-button {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: -1.7rem;
+  transform: translateY(-50%);
   width: 1.4rem;
   height: 1.4rem;
   padding: 0;
@@ -509,15 +494,21 @@ a {
   color: var(--terminal-comment);
 }
 
+.terminal__comment--separated {
+  margin-top: 1.4rem;
+}
+
+.terminal__comment--output {
+  margin-top: 0.7rem;
+}
+
 .terminal__output {
   color: #b8bdc2;
 }
 
 .terminal__output-group {
   min-width: max-content;
-  margin: 0.9rem 0 0 1.7rem;
-  padding: 0.35rem 0 0.35rem 1rem;
-  border-left: 1px solid #454a4e;
+  margin-top: 0.5rem;
 }
 
 .index-lens {

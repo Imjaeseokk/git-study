@@ -56,9 +56,9 @@
         <h2><a href="#diagram">Local repo &amp;<br>Remote repo</a></h2>
       </article>
       <aside class="revision">
-        NOTE REVISION 04<br>
+        NOTE REVISION 05<br>
         LAST EDITED<br>
-        2026-10-05 · 15:41 KST
+        2026-10-05 · 20:40 KST
       </aside>
     </div>
   </main>
@@ -125,44 +125,33 @@
     </section>
 
     <section id="commands" class="note-section command-section">
-      <h2>Remote 등록 문법</h2>
-      <div class="terminal" aria-label="bash: Remote repository 등록 문법">
-        <div class="terminal__bar"><span></span><span></span><span></span><strong>bash · syntax</strong></div>
+      <div class="terminal" aria-label="bash: Remote repository 등록과 확인">
+        <div class="terminal__bar"><span></span><span></span><span></span><strong>bash</strong></div>
         <div class="terminal__body">
+          <div class="terminal__comment"># Remote 등록: &lt;name&gt;은 Local에서 사용할 별칭, &lt;remote-url&gt;은 저장소 주소</div>
           <div class="terminal__row">
             <button class="copy-button" type="button" data-copy="git remote add &lt;name&gt; &lt;remote-url&gt;" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
             <div class="terminal__line"><span class="terminal__prompt" aria-hidden="true">$</span> git remote add <span class="terminal__arg">&lt;name&gt;</span> <span class="terminal__arg">&lt;remote-url&gt;</span></div>
           </div>
-        </div>
-      </div>
-      <p class="command-note"><code>&lt;name&gt;</code>은 Local에서 사용할 Remote의 별칭이다. 첫 Remote의 이름은 관례적으로 <code>origin</code>을 사용한다.</p>
 
-      <h2>Remote 등록 예시</h2>
-      <div class="terminal" aria-label="bash: Remote repository 등록 예시">
-        <div class="terminal__bar"><span></span><span></span><span></span><strong>bash · example</strong></div>
-        <div class="terminal__body">
+          <div class="terminal__comment terminal__comment--separated"># 보통 첫 Remote의 이름은 origin을 사용한다</div>
           <div class="terminal__row">
             <button class="copy-button" type="button" data-copy="git remote add origin https://github.com/user/repository.git" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
             <div class="terminal__line"><span class="terminal__prompt" aria-hidden="true">$</span> git remote add <span class="terminal__arg">origin</span> <span class="terminal__arg">https://github.com/user/repository.git</span></div>
           </div>
-        </div>
-      </div>
 
-      <h2>등록 정보 확인</h2>
-      <div class="terminal" aria-label="bash: 등록된 Remote repository 확인">
-        <div class="terminal__bar"><span></span><span></span><span></span><strong>bash · command</strong></div>
-        <div class="terminal__body">
+          <div class="terminal__comment terminal__comment--separated"># 등록된 Remote 확인</div>
           <div class="terminal__row">
-            <button class="copy-button" type="button" data-copy="git remote -v" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
+            <button class="copy-button" type="button" data-copy="git remote -v" aria-label="명령어 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="copy-shape" d="M9 9h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2Z"/><path class="copy-shape" d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/><path class="check-shape" d="m5 12 4 4L19 6"/></svg><span class="copy-tooltip">copy</span></button>
             <div class="terminal__line"><span class="terminal__prompt" aria-hidden="true">$</span> git remote -v</div>
           </div>
           <div class="terminal__output-group" aria-label="명령 실행 결과">
             <div class="terminal__output">origin&nbsp;&nbsp;https://github.com/user/repository.git (fetch)</div>
             <div class="terminal__output">origin&nbsp;&nbsp;https://github.com/user/repository.git (push)</div>
           </div>
+          <div class="terminal__comment terminal__comment--output"># fetch와 push URL은 따로 지정할 수 있어 두 줄로 표시된다</div>
         </div>
       </div>
-      <p class="terminal-caption">fetch와 push URL을 각각 지정할 수 있기 때문에 두 줄로 표시된다.</p>
     </section>
   </div>
 
