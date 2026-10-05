@@ -66,3 +66,40 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
     }, 1600);
   });
 });
+
+const sectionLinks = [...document.querySelectorAll("[data-section]")];
+const sectionMap = new Map(
+  sectionLinks
+    .map((link) => [link.dataset.section, document.getElementById(link.dataset.section)])
+    .filter(([, section]) => section)
+);
+
+function setCurrentSection(id) {
+  sectionLinks.forEach((link) => {
+    if (link.dataset.section === id) {
+      link.setAttribute("aria-current", "location");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+if (sectionMap.size) {
+  setCurrentSection(sectionMap.keys().next().value);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visible) setCurrentSection(visible.target.id);
+    },
+    { rootMargin: "-25% 0px -60%", threshold: [0, 0.1, 0.5] }
+  );
+
+  sectionMap.forEach((section) => observer.observe(section));
+  sectionLinks.forEach((link) => {
+    link.addEventListener("click", () => setCurrentSection(link.dataset.section));
+  });
+}

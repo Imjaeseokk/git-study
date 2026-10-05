@@ -170,6 +170,10 @@ a {
   z-index: 20;
   top: 1.5rem;
   left: var(--page-space);
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
 }
 
@@ -194,12 +198,16 @@ a {
 .note-body {
   width: min(100% - (var(--page-space) * 2), var(--content-width));
   margin: auto;
-  padding: clamp(4rem, 9vw, 9rem) 0 10rem;
+  padding: clamp(4rem, 9vw, 9rem) 0 clamp(4rem, 9vw, 7rem);
 }
 
 .note-section {
   margin-bottom: clamp(6rem, 12vw, 12rem);
   scroll-margin-top: 3rem;
+}
+
+.note-body > .note-section:last-child {
+  margin-bottom: 0;
 }
 
 .note-section > h2,
@@ -242,6 +250,13 @@ a {
   left: 0;
 }
 
+.prose code,
+.command-note code {
+  padding: 0.08em 0.3em;
+  background: var(--line);
+  font: 0.9em/1.4 var(--font-mono);
+}
+
 .repo-diagram {
   margin: 0;
   padding: clamp(1rem, 4vw, 4rem);
@@ -255,6 +270,18 @@ a {
   height: auto;
   overflow: visible;
   color: var(--ink);
+}
+
+.repo-diagram figcaption {
+  max-width: 52rem;
+  margin: 1.5rem auto 0;
+  color: var(--muted);
+  font: 0.78rem/1.7 var(--font-mono);
+  text-align: center;
+}
+
+.repo-diagram-mobile {
+  display: none;
 }
 
 .repo-box rect,
@@ -271,22 +298,60 @@ a {
   fill: var(--paper);
 }
 
+.repo-box .local-only {
+  fill: var(--ink);
+}
+
 .repo-box text {
   fill: currentColor;
   font: 500 27px var(--font-display);
   letter-spacing: -0.02em;
 }
 
-.transfer-dot {
-  fill: var(--ink);
-  animation: transfer 2.4s ease-in-out infinite;
+.repo-box .diagram-note,
+.transfer text {
+  fill: var(--muted);
+  font: 400 18px var(--font-mono);
+  letter-spacing: 0;
 }
 
-@keyframes transfer {
+.transfer-dot {
+  fill: var(--ink);
+}
+
+.transfer-dot--push {
+  animation: transfer-push 2.8s ease-in-out infinite;
+}
+
+.transfer-dot--fetch {
+  animation: transfer-fetch 2.8s 1.4s ease-in-out infinite;
+}
+
+@keyframes transfer-push {
   0%, 15% { transform: translateX(0); opacity: 0; }
   25% { opacity: 1; }
   75% { opacity: 1; }
   85%, 100% { transform: translateX(100px); opacity: 0; }
+}
+
+@keyframes transfer-fetch {
+  0%, 15% { transform: translateX(0); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  85%, 100% { transform: translateX(-100px); opacity: 0; }
+}
+
+.command-section h3 {
+  margin: 3.5rem 0 1rem;
+  font: 500 clamp(1rem, 1.6vw, 1.25rem)/1.4 var(--font-display);
+}
+
+.command-note,
+.terminal-caption {
+  max-width: 52rem;
+  margin: -0.5rem 0 2.5rem;
+  color: var(--muted);
+  font: 0.82rem/1.75 var(--font-body);
 }
 
 .terminal {
@@ -428,6 +493,13 @@ a {
   color: #b8bdc2;
 }
 
+.terminal__output-group {
+  min-width: max-content;
+  margin: 0.9rem 0 0 1.7rem;
+  padding: 0.35rem 0 0.35rem 1rem;
+  border-left: 1px solid #454a4e;
+}
+
 .index-lens {
   position: fixed;
   z-index: 30;
@@ -474,6 +546,32 @@ a {
   padding: 0.9rem 0;
   border-top: 1px solid var(--line);
   text-decoration: none;
+}
+
+.index-lens__panel a[aria-current="location"] {
+  font-weight: 700;
+}
+
+.index-lens__panel a[aria-current="location"] span:first-child {
+  color: var(--muted);
+}
+
+.note-footer {
+  width: min(100% - (var(--page-space) * 2), var(--content-width));
+  margin: 0 auto;
+  padding: 1.5rem 0 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--ink);
+  font: 0.72rem/1.4 var(--font-mono);
+}
+
+.note-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .download-header {
@@ -545,7 +643,9 @@ a {
   }
 
   .note-header {
-    padding-top: 8rem;
+    min-height: auto;
+    padding-top: 6rem;
+    padding-bottom: 2rem;
   }
 
   .note-header h1 {
@@ -554,15 +654,88 @@ a {
 
   .repo-diagram {
     padding: 0;
-    overflow-x: auto;
   }
 
   .repo-diagram svg {
-    min-width: 700px;
+    display: none;
+  }
+
+  .repo-diagram-mobile {
+    display: grid;
+    gap: 1.2rem;
+    padding: 2rem 0;
+  }
+
+  .mobile-repo-card {
+    min-height: 10rem;
+    padding: 1.2rem;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0.8rem;
+    border: 2px solid var(--ink);
+    text-align: center;
+  }
+
+  .mobile-repo-card strong {
+    font: 500 1rem/1.4 var(--font-display);
+  }
+
+  .mobile-repo-card small {
+    color: var(--muted);
+    font: 0.7rem/1.5 var(--font-mono);
+  }
+
+  .mobile-commits {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .mobile-commits::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    border-top: 2px solid var(--ink);
+  }
+
+  .mobile-commits span {
+    position: relative;
+    z-index: 1;
+    width: 0.9rem;
+    height: 0.9rem;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+  }
+
+  .mobile-commits .local-only {
+    background: var(--ink);
+  }
+
+  .mobile-transfer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: var(--muted);
+    font: 0.72rem/1.5 var(--font-mono);
   }
 
   .download-status {
     grid-column: 1;
+  }
+
+  .note-footer {
+    flex-direction: column;
+  }
+}
+
+@media (hover: none) {
+  .copy-button {
+    opacity: 0.55;
   }
 }
 
