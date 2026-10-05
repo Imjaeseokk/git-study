@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candidate B — Marginal Archive</title>
+  <link rel="stylesheet" href="../../design/theme-tokens.css">
+  <link rel="stylesheet" href="../concepts.css">
+</head>
+<body data-concept="b">
+  <nav class="concept-switcher" aria-label="디자인 후보">
+    <a href="../a/">A</a>
+    <a href="../b/" aria-current="page">B</a>
+  </nav>
+
+  <div class="b-frame">
+    <header class="b-header">
+      <div>
+        <p class="eyebrow">Git Study / A living archive</p>
+        <h1>Marginal Archive</h1>
+      </div>
+      <p class="b-header__manifesto">완성된 정답보다 이해가 바뀌는 과정을 남깁니다. 글과 글 사이의 연결, 수정의 흔적, 아직 풀리지 않은 질문도 학습 기록의 일부입니다.</p>
+    </header>
+
+    <nav class="b-map" aria-label="지식 지도">
+      <a href="#objects"><small class="meta">01 / Start</small><span>Objects</span></a>
+      <a href="#objects"><small class="meta">02 / Change</small><span>Commit</span></a>
+      <a href="#objects"><small class="meta">03 / Diverge</small><span>Branch</span></a>
+      <a href="#objects"><small class="meta">04 / Connect</small><span>Remote</span></a>
+      <a href="#objects"><small class="meta">05 / Repair</small><span>Recovery</span></a>
+    </nav>
+
+    <main id="objects" class="b-article">
+      <aside class="b-article__meta">
+        <span class="eyebrow">Note 01.03</span>
+        <dl>
+          <dt>Revision</dt><dd>04</dd>
+          <dt>Commit</dt><dd>d33e2ba</dd>
+          <dt>Modified</dt><dd>2026.10.05</dd>
+          <dt>Status</dt><dd>Growing</dd>
+        </dl>
+      </aside>
+
+      <article class="b-article__body">
+        <p class="kicker">Foundation / Git objects</p>
+        <h2>Git은 파일이 아닌 관계를 기억한다</h2>
+        <p>처음 Git을 배우면 <code>add</code>, <code>commit</code>, <code>push</code>의 순서를 외우게 된다. 하지만 명령어 뒤에는 서로를 가리키는 네 종류의 객체가 있다.</p>
+        <p>blob은 파일의 내용을, tree는 디렉터리 구조를 표현한다. commit은 하나의 tree와 이전 commit을 가리킨다. branch는 그중 한 commit을 가리키는 움직이는 이름이다.</p>
+
+        <h3 id="snapshots">차이가 아닌 스냅샷</h3>
+        <p>각 커밋을 변경사항 묶음으로 이해할 수도 있지만 Git의 저장 모델은 스냅샷에 가깝다. 동일한 내용은 같은 객체를 다시 가리키므로 불필요한 중복이 생기지 않는다.</p>
+
+        <h3 id="identity">내용이 곧 주소가 된다</h3>
+        <p>객체의 이름은 내용을 바탕으로 계산된다. 내용이 같다면 언제 어디에서 만들었든 같은 식별자를 얻는다. 이 성질이 기록의 무결성과 분산 저장을 가능하게 한다.</p>
+      </article>
+
+      <aside class="b-margin" aria-label="주석과 관련 문서">
+        <div class="b-margin__note">
+          MARGIN 01<br><br>
+          branch는 커밋을 담는 상자가 아니라 특정 커밋을 가리키는 작은 참조다.
+        </div>
+        <div class="b-margin__note">
+          QUESTION<br><br>
+          파일 이름은 blob 객체 안에 저장될까?
+        </div>
+        <nav class="b-related">
+          <span class="eyebrow">Connected notes</span>
+          <a href="#snapshots">→ HEAD와 branch</a>
+          <a href="#identity">→ staging area</a>
+          <a href="#identity">→ SHA와 무결성</a>
+        </nav>
+      </aside>
+    </main>
+  </div>
+
+  <nav class="b-strip" aria-label="문서 내 목차">
+    <span class="b-strip__label">Contents</span>
+    <a href="#objects">01 Objects</a>
+    <a href="#snapshots">02 Snapshots</a>
+    <a href="#identity">03 Identity</a>
+    <a href="../a/">A안 보기</a>
+  </nav>
+</body>
+</html>
