@@ -1,16 +1,27 @@
-# Git 학습 노트
+# Local repo & Remote repo
 
-이 파일은 GitHub Pages 다운로드 기능을 확인하기 위한 예시 Markdown 문서입니다.
+## 내 컴퓨터와 GitHub
 
-## 앞으로 정리할 내용
+- 여러 Local repository를 하나의 Remote repository에 연결할 수 있다.
+- Local repository에 새로운 commit이 생겨도 Remote에 바로 반영되지는 않는다.
+- Local과 Remote의 파일 및 branch 정보가 항상 동기화되어 있는 것은 아니다.
 
-- Git의 기본 구조
-- working tree, staging area, repository
-- commit과 branch
-- merge와 rebase
-- 원격 저장소와 협업
+## Command
 
-## 메모
+Local repository에 Remote repository를 등록한다.
 
-이 문서를 수정하고 `main` 브랜치에 반영하면 Pages가 다시 배포됩니다.
-배포 페이지에는 이 파일의 최신 커밋을 기준으로 버전과 마지막 수정 시각이 표시됩니다.
+```bash
+git remote add {name} {remote-url}
+```
+
+기본 Remote 이름은 보통 `origin`을 사용한다.
+
+```bash
+git remote add origin https://github.com/user/repository.git
+```
+
+등록된 Remote repository를 확인한다.
+
+```bash
+git remote -v
+```

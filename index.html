@@ -3,24 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Git Study Notes</title>
+  <title>Git Study — Quiet Index</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
-  <main>
-    <h1>Git Study Notes</h1>
-    <p>Git 공부 내용을 담은 Markdown 원본 파일을 내려받을 수 있습니다.</p>
+<body class="home-page">
+  <header class="cover">
+    <div class="cover__mark">
+      <p class="eyebrow">Git Study / Vol. 01</p>
+      <h1>Quiet<br>Index</h1>
+    </div>
 
-    <section class="download-card" aria-labelledby="file-title">
-      <h2 id="file-title">git-study-notes.md</h2>
-      <dl>
-        <div><dt>버전</dt><dd id="version">확인 중…</dd></div>
-        <div><dt>마지막 수정</dt><dd id="last-modified">확인 중…</dd></div>
-      </dl>
-      <button id="download-button" type="button">Markdown 다운로드</button>
-      <p id="status" role="status" aria-live="polite"></p>
-    </section>
+    <nav class="chapter-index" aria-label="학습 목차">
+      <div class="index-heading">
+        <span class="eyebrow">Contents</span>
+        <span class="eyebrow">05 Chapters</span>
+      </div>
+      <ol>
+        <li><a href="./notes/local-remote/"><span class="index-number">01</span><span class="index-title">Foundations</span><span class="index-count">01 note</span></a></li>
+        <li><span class="index-row"><span class="index-number">02</span><span class="index-title">Commits</span><span class="index-count">00 notes</span></span></li>
+        <li><span class="index-row"><span class="index-number">03</span><span class="index-title">Branches</span><span class="index-count">00 notes</span></span></li>
+        <li><span class="index-row"><span class="index-number">04</span><span class="index-title">Remote</span><span class="index-count">00 notes</span></span></li>
+        <li><span class="index-row"><span class="index-number">05</span><span class="index-title">Internals</span><span class="index-count">00 notes</span></span></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main class="current-note">
+    <div class="current-note__inner">
+      <p class="kicker">Note<br>01—01</p>
+      <article>
+        <h2><a href="./notes/local-remote/">Local repo &amp;<br>Remote repo</a></h2>
+      </article>
+      <aside class="revision">
+        REVISION 01<br>
+        LAST EDITED 14:34
+      </aside>
+    </div>
   </main>
-  <script src="./script.js"></script>
+
+  <details class="index-lens">
+    <summary>INDEX · 01 / 01</summary>
+    <nav class="index-lens__panel" aria-label="빠른 목차">
+      <span class="eyebrow">Contents</span>
+      <ol>
+        <li><a href="./notes/local-remote/"><span>01</span><strong>Local repo &amp; Remote repo</strong></a></li>
+        <li><a href="./download/"><span>↓</span><span>Markdown Source</span></a></li>
+      </ol>
+    </nav>
+  </details>
 </body>
 </html>

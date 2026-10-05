@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local repo & Remote repo — Git Study</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body class="note-page">
+  <a class="back-index eyebrow" href="../../">← Index</a>
+
+  <header class="note-header">
+    <p class="kicker">Foundations<br>01—01</p>
+    <h1>Local repo &amp;<br>Remote repo</h1>
+    <aside class="revision">
+      REVISION 01<br>
+      LAST EDITED 14:34
+    </aside>
+  </header>
+
+  <main class="note-body">
+    <section id="diagram" class="note-section">
+      <h2>내 컴퓨터와 GitHub</h2>
+      <figure class="repo-diagram">
+        <svg viewBox="0 0 1000 390" role="img" aria-labelledby="diagram-title diagram-desc">
+          <title id="diagram-title">Local repository와 Remote repository의 연결</title>
+          <desc id="diagram-desc">내 컴퓨터의 Local repository가 GitHub의 Remote repository와 연결되고 커밋이 이동하는 그림</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+            </marker>
+          </defs>
+
+          <g class="repo-box repo-box--local">
+            <text x="235" y="52" text-anchor="middle">내 컴퓨터</text>
+            <rect x="70" y="85" width="330" height="190" rx="4"/>
+            <line x1="135" y1="180" x2="335" y2="180"/>
+            <circle cx="135" cy="180" r="13"/>
+            <circle cx="200" cy="180" r="13"/>
+            <circle cx="265" cy="180" r="13"/>
+            <circle cx="335" cy="180" r="13"/>
+            <text x="235" y="325" text-anchor="middle">Local repository</text>
+          </g>
+
+          <g class="transfer">
+            <line x1="435" y1="180" x2="565" y2="180" marker-end="url(#arrow)"/>
+            <circle class="transfer-dot" cx="450" cy="180" r="8"/>
+          </g>
+
+          <g class="repo-box repo-box--remote">
+            <text x="765" y="52" text-anchor="middle">GitHub</text>
+            <rect x="600" y="85" width="330" height="190" rx="4"/>
+            <line x1="665" y1="180" x2="865" y2="180"/>
+            <circle cx="665" cy="180" r="13"/>
+            <circle cx="730" cy="180" r="13"/>
+            <circle cx="795" cy="180" r="13"/>
+            <circle cx="865" cy="180" r="13"/>
+            <text x="765" y="325" text-anchor="middle">Remote repository</text>
+          </g>
+        </svg>
+      </figure>
+    </section>
+
+    <section id="relation" class="note-section prose">
+      <h2>Local과 Remote의 관계</h2>
+      <ul>
+        <li>여러 Local repository를 하나의 Remote repository에 연결할 수 있다.</li>
+        <li>Local repository에 새로운 commit이 생겨도 Remote에 바로 반영되지는 않는다.</li>
+        <li>Local과 Remote의 파일 및 branch 정보가 항상 동기화되어 있는 것은 아니다.</li>
+      </ul>
+    </section>
+
+    <section id="commands" class="note-section">
+      <h2>Command</h2>
+
+      <div class="terminal" aria-label="Remote repository 등록 명령어">
+        <div class="terminal__bar"><span></span><span></span><span></span><strong>terminal</strong></div>
+        <div class="terminal__body">
+          <div class="terminal__comment"># Local repository에 Remote repository 등록</div>
+          <div class="terminal__line"><span class="terminal__prompt">$</span> git remote add <span class="terminal__arg">{name}</span> <span class="terminal__arg">{remote-url}</span></div>
+          <div class="terminal__comment"># 기본 Remote 이름은 보통 origin을 사용</div>
+          <div class="terminal__line"><span class="terminal__prompt">$</span> git remote add <span class="terminal__arg">origin</span> <span class="terminal__arg">https://github.com/user/repository.git</span></div>
+        </div>
+      </div>
+
+      <div class="terminal" aria-label="등록된 Remote repository 확인 명령어">
+        <div class="terminal__bar"><span></span><span></span><span></span><strong>terminal</strong></div>
+        <div class="terminal__body">
+          <div class="terminal__comment"># 등록된 Remote repository 확인</div>
+          <div class="terminal__line"><span class="terminal__prompt">$</span> git remote -v</div>
+          <div class="terminal__output">origin&nbsp;&nbsp;https://github.com/user/repository.git (fetch)</div>
+          <div class="terminal__output">origin&nbsp;&nbsp;https://github.com/user/repository.git (push)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <details class="index-lens">
+    <summary>INDEX · 01 / 03</summary>
+    <nav class="index-lens__panel" aria-label="노트 목차">
+      <span class="eyebrow">Local repo &amp; Remote repo</span>
+      <ol>
+        <li><a href="#diagram"><span>01</span><strong>내 컴퓨터와 GitHub</strong></a></li>
+        <li><a href="#relation"><span>02</span><span>Local과 Remote의 관계</span></a></li>
+        <li><a href="#commands"><span>03</span><span>Command</span></a></li>
+      </ol>
+    </nav>
+  </details>
+</body>
+</html>
