@@ -1,0 +1,32 @@
+/*
+ * Git Study — quiet monochrome theme tokens
+ * Primary reference: Monotonomo
+ * https://ondisplay.website/site/monotonomo
+ */
+
+:root {
+  /* Source palette — keep these values unchanged. */
+  --mono-paper: #f5f2ed;
+  --mono-ink: #1b1b1b;
+  --mono-line: #d1ccc6;
+  --mono-muted: #6c6762;
+  --mono-soft: #afaba7;
+  --mono-mid: #8c8782;
+
+  /* Semantic aliases for future pages. */
+  --color-background: var(--mono-paper);
+  --color-text: var(--mono-ink);
+  --color-border: var(--mono-line);
+  --color-text-muted: var(--mono-muted);
+  --color-ui-soft: var(--mono-soft);
+  --color-ui-mid: var(--mono-mid);
+
+  --font-display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --content-width: 72rem;
+  --reading-width: 42rem;
+  --space-page: clamp(1.25rem, 4vw, 4rem);
+  --rule: 1px solid var(--color-border);
+}
