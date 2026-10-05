@@ -124,6 +124,20 @@ a {
   color: var(--muted);
 }
 
+.chapter-index .chapter-notes {
+  padding: 0.5rem 0 1rem 4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.chapter-index .chapter-notes a {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border: 0;
+  font: 0.78rem/1.5 var(--font-mono);
+}
+
 .index-row {
   color: var(--soft);
 }
@@ -147,7 +161,7 @@ a {
   width: min(100%, var(--content-width));
   margin: auto;
   display: grid;
-  grid-template-columns: 12rem minmax(0, var(--reading-width)) 1fr;
+  grid-template-columns: 12rem minmax(0, 1fr) 13rem;
   gap: clamp(2rem, 6vw, 6rem);
 }
 
@@ -186,7 +200,6 @@ a {
   grid-template-columns: 10rem minmax(0, 1fr) 13rem;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: end;
-  border-bottom: 1px solid var(--ink);
 }
 
 .note-header h1 {
@@ -199,6 +212,11 @@ a {
   width: min(100% - (var(--page-space) * 2), var(--content-width));
   margin: auto;
   padding: clamp(4rem, 9vw, 9rem) 0 clamp(4rem, 9vw, 7rem);
+}
+
+.note-body--empty {
+  min-height: 16svh;
+  padding: 0;
 }
 
 .note-section {
@@ -222,16 +240,15 @@ a {
 }
 
 .home-note {
-  border-top: 1px solid var(--line);
+  padding-top: 0;
 }
 
 .prose {
-  display: grid;
-  grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(2rem, 8vw, 8rem);
+  display: block;
 }
 
 .prose ul {
+  max-width: 52rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -260,7 +277,6 @@ a {
 .repo-diagram {
   margin: 0;
   padding: clamp(1rem, 4vw, 4rem);
-  border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
 
@@ -341,9 +357,13 @@ a {
   85%, 100% { transform: translateX(-100px); opacity: 0; }
 }
 
-.command-section h3 {
+.command-section h2 {
   margin: 3.5rem 0 1rem;
   font: 500 clamp(1rem, 1.6vw, 1.25rem)/1.4 var(--font-display);
+}
+
+.command-section h2:first-child {
+  margin-top: 0;
 }
 
 .command-note,
