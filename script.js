@@ -1,5 +1,6 @@
 const markdownUrl = "./content/git-study-notes.md";
-const metadataUrl = "./metadata.json";
+const commitsApiUrl =
+  "https://api.github.com/repos/Imjaeseokk/git-study/commits?path=content%2Fgit-study-notes.md&per_page=1";
 
 const versionElement = document.querySelector("#version");
 const modifiedElement = document.querySelector("#last-modified");
@@ -8,18 +9,24 @@ const statusElement = document.querySelector("#status");
 
 async function loadMetadata() {
   try {
-    const response = await fetch(metadataUrl, { cache: "no-store" });
-    if (!response.ok) throw new Error("metadata unavailable");
+    const response = await fetch(commitsApiUrl, {
+      headers: { Accept: "application/vnd.github+json" },
+      cache: "no-store"
+    });
+    if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
 
-    const metadata = await response.json();
-    versionElement.textContent = `r${metadata.revision} (${metadata.commit})`;
+    const [latestCommit] = await response.json();
+    if (!latestCommit) throw new Error("commit not found");
+
+    versionElement.textContent = latestCommit.sha.slice(0, 7);
     modifiedElement.textContent = new Intl.DateTimeFormat("ko-KR", {
       dateStyle: "long",
       timeStyle: "short"
-    }).format(new Date(metadata.lastModified));
-  } catch {
-    versionElement.textContent = "개발 환경";
-    modifiedElement.textContent = "배포 후 표시됩니다";
+    }).format(new Date(latestCommit.commit.committer.date));
+  } catch (error) {
+    versionElement.textContent = "확인할 수 없음";
+    modifiedElement.textContent = "확인할 수 없음";
+    console.error(error);
   }
 }
 
